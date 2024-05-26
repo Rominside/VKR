@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-time Graphs</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="graph1"></div>
+    <div id="graph2"></div>
+    <div id="graph3"></div>
+
+    <script>
+        var graph1_data = {{ y1 }};
+        var graph2_data = {{ y2 }};
+
+        var layout1 = {
+            title: 'Real-time temperature value',
+            xaxis: {
+                title: 'datetime'
+            },
+            yaxis: {
+                title: 'temperature value'
+            }
+        };
+
+        var layout2 = {
+            title: 'Real-time gas concentration value',
+            xaxis: {
+                title: 'datetime'
+            },
+            yaxis: {
+                title: 'concentration value'
+            }
+        };
+
+        var x = {{ x }};
+
+        var graph1 = Plotly.newPlot('graph1', [{
+            x: x,
+            y: graph1_data,
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: 'Graph 1'
+        }], layout1);
+
+        var graph2 = Plotly.newPlot('graph2', [{
+            x: x,
+            y: graph2_data,
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: 'Graph 2'
+        }], layout2);
+
+        function updateGraphs() {
+
+        }
+
+        setInterval(() => window.location.reload(), 1000); // Обновление графиков каждую секунду
+    </script>
+</body>
+</html>
